@@ -14,7 +14,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
   $senha = $_POST['senha'] ?? '';
 
   // Carrega arquivo JSON de usuários
-  $jsonData = file_get_contents('data/users.json');
+  $jsonData = file_get_contents('../data/users.json');
   $users = json_decode($jsonData, true);
 
   // Verifica usuário e senha
@@ -28,13 +28,13 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
       // Redireciona para o dashboard específico
       switch($user['tipo']) {
         case 'gestor':
-          header('Location: dashboard_gestor.php');
+          header('Location: ../dashboards/dashboard_gestor.php');
           break;
         case 'estudante':
-          header('Location: dashboard_estudante.php');
+          header('Location: ../dashboards/dashboard_estudante.php');
           break;
         case 'admin':
-          header('Location: dashboard_admin.php');
+          header('Location: ../dashboards/dashboard_admin.php');
           break;
         default:
           header('Location: index.php');
@@ -51,11 +51,11 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
   <meta charset="UTF-8">
   <title>Login - Sistema de Concursos</title>
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
 
-  <?php include 'partials/header.php'; ?>
+  <?php include '../partials/header.php'; ?>
 
   <main class="container">
     <h2>Login</h2>
@@ -74,6 +74,6 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
     </form>
   </main>
 
-  <?php include 'partials/footer.php'; ?>
+  <?php include '../partials/footer.php'; ?>
 </body>
 </html>

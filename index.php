@@ -18,9 +18,9 @@ session_start();
     <p>Este sistema permite a administração completa de concursos e processos seletivos...</p>
 
     <div class="home-links">
-      <a href="login.php">Login</a>
-      <a href="register.php">Registro</a>
-      <a href="#">Concursos e Seletivos Ativos</a>
+      <a href="control/login.php">Login</a>
+      <a href="control/register.php">Registro</a>
+      <a href="pages/concursos.php">Concursos e Seletivos Ativos</a>
       <a href="#">Informações Gerais</a>
     </div>
   </main>

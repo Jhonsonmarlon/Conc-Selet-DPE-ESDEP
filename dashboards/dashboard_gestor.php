@@ -12,10 +12,10 @@ if(!isset($_SESSION['user_tipo']) || $_SESSION['user_tipo'] !== 'gestor') {
 <head>
   <meta charset="UTF-8">
   <title>Dashboard Gestor</title>
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
-  <?php include 'partials/header.php'; ?>
+  <?php include '../partials/header.php'; ?>
 
   <main class="container">
     <h2>Painel do Gestor</h2>
@@ -29,9 +29,9 @@ if(!isset($_SESSION['user_tipo']) || $_SESSION['user_tipo'] !== 'gestor') {
       <li><a href="#">Status das Inscrições</a></li>
     </ul>
 
-    <a href="logout.php">Sair</a>
+    <a href="../control/logout.php">Sair</a>
   </main>
 
-  <?php include 'partials/footer.php'; ?>
+  <?php include '../partials/footer.php'; ?>
 </body>
 </html>

@@ -1,117 +1,255 @@
 /* css/style.css */
+
+:root {
+  --color-primary: #02732A;    /* cor primária */
+  --color-secondary: #048C34; /* cor secundária */
+  --color-tertiary: #1E402A;  /* cor terciária */
+  --color-accent: #458C5E;    /* cor de acentuação */
+  --color-bg: #F2F2F2;        /* background principal */
+  --color-text: #2E2E2E;      /* texto principal */
+}
+
+
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  body {
-    font-family: Arial, sans-serif;
-    background: #f5f5f5;
-    color: #333;
-  }
-  
-  header, footer {
-    background: #333;
-    color: #fff;
-    padding: 1rem;
-  }
-  
-  header .navbar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  
-  header .logo a {
-    color: #fff;
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 1.2rem;
-  }
-  
-  .nav-links {
-    list-style: none;
-    display: flex;
-    gap: 1rem;
-  }
-  
-  .nav-links li a {
-    color: #fff;
-    text-decoration: none;
-    transition: opacity 0.2s;
-  }
-  
-  .nav-links li a:hover {
-    opacity: 0.8;
-  }
-  
-  .container {
-    max-width: 800px;
-    margin: 2rem auto;
-    padding: 1rem;
-    background: #fff;
-    border-radius: 5px;
-  }
-  
-  h1, h2 {
-    margin-bottom: 1rem;
-  }
-  
-  form {
-    display: flex;
-    flex-direction: column;
-    gap: 0.8rem;
-  }
-  
-  form label {
-    font-weight: bold;
-  }
-  
-  form input, form select {
-    padding: 0.5rem;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-  }
-  
-  form button {
-    padding: 0.7rem 1rem;
-    border: none;
-    border-radius: 3px;
-    background: #333;
-    color: #fff;
-    cursor: pointer;
-  }
-  
-  form button:hover {
-    background: #555;
-  }
-  
-  .error {
-    background-color: #f8d7da;
-    color: #721c24;
-    padding: 0.5rem;
-    margin-bottom: 1rem;
-    border-radius: 3px;
-  }
-  
-  .home-links a {
-    display: inline-block;
-    margin: 0.5rem;
-    padding: 0.7rem 1rem;
-    text-decoration: none;
-    color: #fff;
-    background: #333;
-    border-radius: 3px;
-    transition: background 0.2s;
-  }
-  
-  .home-links a:hover {
-    background: #555;
-  }
-  
-  footer {
-    text-align: center;
-    margin-top: 2rem;
-  }
-  
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: #f5f5f5;
+  color: #333;
+}
+
+header, footer {
+  background: #333;
+  color: #fff;
+  padding: 1rem;
+}
+
+header .navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+header .logo a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+}
+
+.nav-links li a {
+  color: #fff;
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+
+.nav-links li a:hover {
+  opacity: 0.8;
+}
+
+.container {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 1rem;
+  background: #fff;
+  border-radius: 5px;
+}
+
+h1, h2 {
+  margin-bottom: 1rem;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+form label {
+  font-weight: bold;
+}
+
+form input, form select {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+form button {
+  padding: 0.7rem 1rem;
+  border: none;
+  border-radius: 3px;
+  background: #333;
+  color: #fff;
+  cursor: pointer;
+}
+
+form button:hover {
+  background: #555;
+}
+
+.error {
+  background-color: #f8d7da;
+  color: #721c24;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  border-radius: 3px;
+}
+
+.home-links a {
+  display: inline-block;
+  margin: 0.5rem;
+  padding: 0.7rem 1rem;
+  text-decoration: none;
+  color: #fff;
+  background: #333;
+  border-radius: 3px;
+  transition: background 0.2s;
+}
+
+.home-links a:hover {
+  background: #555;
+}
+
+footer {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+/* Garante que a página ocupe 100% da altura da janela */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* Configuração para fazer o container “esticar” e empurrar o footer pra baixo */
+body {
+  display: flex;
+  flex-direction: column;
+  background: var(--color-bg);
+  color: var(--color-text);
+}
+
+/* O main deve crescer para “empurrar” o rodapé para o fim */
+main.container {
+  flex: 1;
+  padding: 1rem;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  background: #fff;
+  /* ou var(--color-bg) se quiser outro fundo */
+  border-radius: 5px;
+}
+
+/* Deixa o footer fixado na parte inferior se a tela for alta */
+footer {
+  background: var(--color-tertiary);
+  color: #fff;
+  text-align: center;
+  padding: 1rem;
+  /* É suficiente se usarmos flex; 
+     não precisamos position fixed. */
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: Arial, sans-serif;
+}
+
+header {
+  background: var(--color-tertiary); /* substitui #333 */
+  color: #fff;
+  padding: 1rem;
+}
+
+.navbar .logo a {
+  color: #fff;
+}
+
+.nav-links li a {
+  color: #fff;
+}
+
+/* Botão primário, por exemplo */
+button,
+.home-links a,
+.btn-gestor {
+  background: var(--color-primary);
+  color: #fff;
+  padding: 0.7rem 1rem;
+  text-decoration: none;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+button:hover,
+.home-links a:hover,
+.btn-gestor:hover {
+  background: var(--color-secondary);
+}
+
+/* Container principal */
+main.container {
+  flex: 1; /* para expandir e empurrar o footer para baixo */
+  max-width: 800px;
+  margin: 2rem auto;
+  background: #fff;
+  border-radius: 5px;
+  padding: 1rem;
+}
+
+/* Footer fixado ao final (com flex) */
+footer {
+  background: var(--color-tertiary);
+  color: #fff;
+  text-align: center;
+  padding: 1rem;
+}
+
+/* Alguns ajustes de formulário */
+form input, form select {
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  padding: 0.5rem;
+}
+
+form button {
+  background: var(--color-primary);
+  color: #fff;
+}
+
+form button:hover {
+  background: var(--color-secondary);
+}
+
+/* Cartões de concursos (exemplo) */
+.card-concurso {
+  background: var(--color-accent);
+  color: #fff;
+  padding: 1rem;
+  border-radius: 5px;
+  margin-bottom: 1rem;
+}
+.card-concurso a.btn-gestor {
+  display: inline-block;
+  margin-top: 0.5rem;
+}

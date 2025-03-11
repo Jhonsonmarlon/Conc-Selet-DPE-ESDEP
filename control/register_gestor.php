@@ -1,24 +1,24 @@
 <?php
 session_start();
 
-// Se já estiver logado, redirecionar para o painel
+// Se já estiver logado, redirecionar para o painel (caso queira evitar re-cadastro)
 if(isset($_SESSION['user_tipo'])) {
   header("Location: dashboard_{$_SESSION['user_tipo']}.php");
   exit;
 }
 
+// Verifica se houve envio do formulário
 if($_SERVER['REQUEST_METHOD'] === 'POST') {
   $nome = $_POST['nome'] ?? '';
   $email = $_POST['email'] ?? '';
   $senha = $_POST['senha'] ?? '';
   $conf_senha = $_POST['conf_senha'] ?? '';
-  $tipo = $_POST['tipo'] ?? 'estudante'; // valor padrão
 
   if($senha !== $conf_senha) {
     $erro = "As senhas não conferem!";
   } else {
     // Carrega e decodifica JSON
-    $jsonData = file_get_contents('data/users.json');
+    $jsonData = file_get_contents('../data/users.json');
     $users = json_decode($jsonData, true);
 
     // Verifica se email já existe
@@ -30,23 +30,23 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     if(empty($erro)) {
-      // Cria novo ID
+      // Cria novo ID (simplesmente o tamanho do array + 1)
       $novoId = count($users) + 1;
 
-      // Cria array do novo usuário
+      // Forçar tipo "gestor"
       $novoUsuario = [
         "id" => $novoId,
         "nome" => $nome,
         "email" => $email,
         "senha" => $senha,
-        "tipo" => $tipo
+        "tipo" => "gestor" // Forçado!
       ];
 
       // Adiciona ao array principal e salva em JSON
       $users[] = $novoUsuario;
-      file_put_contents('data/users.json', json_encode($users, JSON_PRETTY_PRINT));
+      file_put_contents('../data/users.json', json_encode($users, JSON_PRETTY_PRINT));
 
-      // Redireciona para login
+      // Redireciona para login (ou direto para o dashboard, se preferir)
       header("Location: login.php");
       exit;
     }
@@ -57,20 +57,20 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>Registro - Sistema de Concursos</title>
-  <link rel="stylesheet" href="css/style.css">
+  <title>Registro de Gestor</title>
+  <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
-  <?php include 'partials/header.php'; ?>
+  <?php include '../partials/header.php'; ?>
 
   <main class="container">
-    <h2>Registro</h2>
+    <h2>Cadastrar Escola (Gestor)</h2>
     <?php if(!empty($erro)): ?>
       <div class="error"><?php echo $erro; ?></div>
     <?php endif; ?>
 
-    <form method="POST" action="register.php">
-      <label for="nome">Nome:</label>
+    <form method="POST" action="register_gestor.php">
+      <label for="nome">Nome da Escola ou Responsável:</label>
       <input type="text" name="nome" id="nome" required>
 
       <label for="email">Email:</label>
@@ -82,19 +82,10 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
       <label for="conf_senha">Confirmar Senha:</label>
       <input type="password" name="conf_senha" id="conf_senha" required>
 
-      <!-- Seleção do tipo de usuário (somente gestor ou estudante) -->
-      <label for="tipo">Tipo de Usuário:</label>
-      <select name="tipo" id="tipo">
-        <option value="estudante">Estudante</option>
-        <option value="gestor">Gestor</option>
-      </select>
-
-      <button type="submit">Cadastrar</button>
+      <button type="submit">Finalizar Cadastro</button>
     </form>
   </main>
 
-  <?php include 'partials/footer.php'; ?>
+  <?php include '../partials/footer.php'; ?>
 </body>
 </html>
-
-<script src="js/script.js"></script>
